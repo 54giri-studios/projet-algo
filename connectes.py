@@ -10,7 +10,7 @@ from sys import argv
 from geo.point import Point
 
 
-def load_instance(filename):
+def load_instance(filename: str):
     """
     loads .pts file.
     returns distance limit and points.
@@ -23,7 +23,7 @@ def load_instance(filename):
     return distance, points
 
 
-def print_components_sizes(distance, points):
+def print_components_sizes(distance: float, points: list[Point]):
     """
     affichage des tailles triees de chaque composante
     """
