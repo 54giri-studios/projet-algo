@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """
+fonzoef
 compute sizes of all connected components.
 sort and display.
 """
