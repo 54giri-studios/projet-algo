@@ -23,6 +23,10 @@ def load_instance(filename):
 
     return distance, points
 
+def liste_adjascence(distance, points):
+    """Renvoit un dictionnaire ayant pour entrée les points et affichant 
+    la liste de leurs points adjascents
+    """
 
 def print_components_sizes(distance, points):
     """
