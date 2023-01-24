@@ -23,25 +23,46 @@ def load_instance(filename: str):
 
     return distance, points
 
-def liste_adjascence(distance: float, points: list[Point]):
-    """Renvoit un dictionnaire ayant pour entrée les points et affichant 
+def liste_adjacence(distance: float, points: list[Point]):
+    """Renvoit un dictionnaire ayant pour entrée les points et affichant
     la liste de leurs points adjascents
     """
     adj_list = {}
     for point in points:
-        adj_list[f"{point}"] = []
+        adj_list[point] = []
         for autre_point in points:
             if point.distance_to(autre_point) < distance:
-                adj_list[f"{point}"].append(autre_point)
+                adj_list[point].append(autre_point)
     return adj_list
+
+def liste_composantes(adj_list):
+    """
+    Renvoit la liste des composantes à partir des listes d'adjacence
+    """
+    vus = []
+    def composante(adj_list, composante_courante):
+        res = []
+        for elem in adj_list:
+            if elem not in vus:
+                vus.append(elem)
+                res += composante(adj_list, composante_courante + [elem])
+        return res
+    composantes = []
+    for point, adj in adj_list.items():
+        composante_courante = [point]
+        if point not in vus:
+            composantes.append(composante(adj, composante_courante))
+    return composantes
+
 
 
 def print_components_sizes(distance: float, points: list[Point]):
     """
     affichage des tailles triees de chaque composante
     """
-    pass  # TODO: afficher la solution
-
+    adj_list = liste_adjacence(distance, points)
+    composantes = liste_composantes(adj_list)
+    pass
 
 def main():
     """
