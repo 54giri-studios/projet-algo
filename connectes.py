@@ -8,7 +8,7 @@ sort and display.
 from timeit import timeit
 from sys import argv
 
-from geo.point import Point, distance_to
+from geo.point import Point 
 
 
 def load_instance(filename: str):
@@ -62,7 +62,9 @@ def print_components_sizes(distance: float, points: list[Point]):
     """
     adj_list = liste_adjacence(distance, points)
     composantes = liste_composantes(adj_list)
-    pass
+    tailles = [len(compo) for compo in composantes]
+    tailles.sort()
+    print(tailles)
 
 def main():
     """
